@@ -38,3 +38,4 @@ class MainPage(BasePage):
             with allure.step('Screenshot'):
                 allure.attach(body=self.browser.get_screenshot_as_png(),
                               name='change_currency')
+                              
