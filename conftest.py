@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.service import Service
 def pytest_addoption(parser):
     parser.addoption("--browser_name", default="chrome", help="Choose browser")
     parser.addoption("--base_url", default="http://192.168.8.113:8081/")
-    parser.addoption("--executor", default="127.0.0.1")
+    parser.addoption("--executor", default="192.168.8.113")
     parser.addoption("--vnc", action="store_true")
     parser.addoption("--bv")
 
@@ -27,14 +27,14 @@ def browser(request):
         raise pytest.UsageError("--browser_name должен быть chrome, firefox или opera")
 
     browser = webdriver.Remote(command_executor=f"http://{executor}:4444/wd/hub",
+                               options=options,
                                desired_capabilities={
                                    "BrowserName": browser_name,
                                    "browserVersion": version,
                                    "selenoid:options": {
                                        "enableVNC": vnc
                                    }
-                               },
-                               options=options
+                               }
                                )
 
     yield browser
