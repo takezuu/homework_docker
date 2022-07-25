@@ -5,9 +5,9 @@ from selenium.webdriver.chrome.service import Service
 
 
 def pytest_addoption(parser):
-    parser.addoption("--browser_name", default="chrome", help="Choose browser")
-    parser.addoption("--base_url", default="http://192.168.8.113:8081/")
-    parser.addoption("--executor", default="192.168.8.113")
+    parser.addoption("--browser_name", help="Choose browser")
+    parser.addoption("--base_url")
+    parser.addoption("--executor")
     parser.addoption("--vnc", action="store_true")
     parser.addoption("--bv")
 
