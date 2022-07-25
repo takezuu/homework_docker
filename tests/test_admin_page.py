@@ -36,24 +36,3 @@ def test_visibility_of_login_field(browser, base_url):
 def test_password_field_for_element_attribute(browser, base_url):
     AdminPage(browser).open_url(base_url, AdminPage.PATH)
     AdminPage(browser).check_element_attribute(AdminPage.ELEMENT_ATTRIBUTE)
-
-
-@allure.feature('Admin panel')
-@allure.title('Add a new product')
-def test_add_new_product_admin_panel(browser, base_url):
-    AdminPage(browser).open_url(base_url, AdminPage.PATH)
-    AdminPage(browser).log_in(config.LOGIN, config.PASSWORD)
-    AdminPage(browser).add_new_product(AdminPage.product_name, AdminPage.meta_teg, AdminPage.product_model)
-    product_name = AdminPage(browser).check_new_product(AdminPage.product_name)
-    assert product_name == AdminPage.product_name, 'Продукт не добавлен'
-
-
-@allure.feature('Admin panel')
-@allure.title('Delete a product')
-def test_delete_product_admin_panel(browser, base_url):
-    AdminPage(browser).open_url(base_url, AdminPage.PATH)
-    AdminPage(browser).log_in(config.LOGIN, config.PASSWORD)
-    AdminPage(browser).add_new_product(AdminPage.product_name_2, AdminPage.meta_teg, AdminPage.product_model)
-    AdminPage(browser).check_new_product(AdminPage.product_name)
-    delete_text = AdminPage(browser).delete_product()
-    assert delete_text == 'Success: You have modified products!\n×', 'Товар не удален'
